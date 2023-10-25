@@ -53,13 +53,10 @@ class _CountdownTimerDemoState extends State<CountdownTimerDemo> {
   @override
   Widget build(BuildContext context) {
     String strDigits(int n) => n.toString().padLeft(2, '0');
-    final days = strDigits(myDuration.inDays);
     // Step 7
-    final hours = strDigits(myDuration.inHours.remainder(24));
-    final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
     Text(
-    '$days:$hours:$minutes:$seconds',
+    seconds,
     style: const TextStyle(
       fontWeight: FontWeight.bold,
       color: Colors.black,
@@ -68,6 +65,7 @@ class _CountdownTimerDemoState extends State<CountdownTimerDemo> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Timer OTP'),
+        backgroundColor: const Color(0xffFF69B4),
       ),
       body: Center(
         child: Column(
@@ -77,23 +75,24 @@ class _CountdownTimerDemoState extends State<CountdownTimerDemo> {
             ),
             // Step 8
             Text(
-              '$hours:$minutes:$seconds',
+              seconds,
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                   fontSize: 50),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 50),
             // Step 9
             ElevatedButton(
               onPressed: startTimer,
               child: const Text(
-                'Start',
+                'Send',
                 style: TextStyle(
                   fontSize: 30,
                 ),
               ),
             ),
+            const SizedBox(height: 50),
             // Step 10
             ElevatedButton(
               onPressed: () {
@@ -108,13 +107,15 @@ class _CountdownTimerDemoState extends State<CountdownTimerDemo> {
                 ),
               ),
             ),
+            const SizedBox(height: 50),
             // Step 11
             ElevatedButton(
                 onPressed: () {
                   resetTimer();
+                  startTimer();
                 },
                 child: const Text(
-                  'Reset',
+                  'Resend',
                   style: TextStyle(
                     fontSize: 30,
                   ),
