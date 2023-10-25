@@ -85,6 +85,9 @@ class _CountdownTimerDemoState extends State<CountdownTimerDemo> {
             // Step 9
             ElevatedButton(
               onPressed: startTimer,
+              style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFE91E63), 
+              ),
               child: const Text(
                 'Send',
                 style: TextStyle(
@@ -100,6 +103,9 @@ class _CountdownTimerDemoState extends State<CountdownTimerDemo> {
                   stopTimer();
                 }
               },
+              style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xff9ACD32), 
+              ),
               child: const Text(
                 'Stop',
                 style: TextStyle(
