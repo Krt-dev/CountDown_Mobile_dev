@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,12 +16,25 @@ class CountdownTimerDemo extends StatefulWidget {
 
 
 class _CountdownTimerDemoState extends State<CountdownTimerDemo> {
+   final List<String> fourLetterWords = [
+    'HJFE', 'BTWE', 'YTRR', 'DWVB', 'HRBT', 'BTEE', 'NMYE', 'KRTZ',
+  ];
+  String randomWord = '';
   // Step 2
   Timer? countdownTimer;
   Duration myDuration = const Duration(days: 5);
   @override
   void initState() {
     super.initState();
+    generateRandomWord();
+  }
+
+  void generateRandomWord() {
+    final Random random = Random();
+    final int randomIndex = random.nextInt(fourLetterWords.length);
+    setState(() {
+      randomWord = fourLetterWords[randomIndex];
+    });
   }
   /// Timer related methods ///
   // Step 3
@@ -64,12 +77,24 @@ class _CountdownTimerDemoState extends State<CountdownTimerDemo> {
     );
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Timer OTP'),
         backgroundColor: const Color(0xffFF69B4),
+        titleTextStyle: const TextStyle( fontSize: 20),
       ),
       body: Center(
         child: Column(
           children: [
+            const SizedBox(
+              height: 30
+            ),
+            Text(
+              randomWord,
+              style: const TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                ),
+            ),
             const SizedBox(
               height: 50,
             ),
@@ -125,7 +150,23 @@ class _CountdownTimerDemoState extends State<CountdownTimerDemo> {
                   style: TextStyle(
                     fontSize: 30,
                   ),
-                ))
+                )
+              ),
+            const SizedBox(height: 50),
+            ElevatedButton(
+                onPressed: () {
+                  generateRandomWord();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xff8A2BE2)
+                ),
+                child: const Text(
+                  'Generate One time code',
+                  style: TextStyle(
+                    fontSize: 15,
+                  ),
+                )
+              )
           ],
         ),
       ),
